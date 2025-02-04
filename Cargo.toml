@@ -1,8 +1,8 @@
 [package]
-name = "chill"
+name = "moyai-bot"
 version = "1.0.0"
 edition = "2021"
-repository = "https://github.com/getchoo/chill"
+repository = "https://github.com/getchoo/moyai-bot"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

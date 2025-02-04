@@ -11,7 +11,7 @@ let
 in
 
 rustPlatform.buildRustPackage {
-  pname = "chill-discord-bot";
+  pname = "moyai-discord-bot";
   version = (lib.importTOML ../Cargo.toml).package.version or "unknown";
 
   src = fs.toSource {
@@ -52,9 +52,9 @@ rustPlatform.buildRustPackage {
 
   meta = {
     description = "funni bot";
-    homepage = "https://github.com/getchoo/chill";
+    homepage = "https://github.com/getchoo/moyai-bot";
     license = lib.licenses.mit;
     maintainers = with lib.maintainers; [ getchoo ];
-    mainProgram = "chill";
+    mainProgram = "moyai-bot";
   };
 }
