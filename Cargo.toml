@@ -10,24 +10,24 @@ repository = "https://github.com/getchoo/moyai-bot"
 anyhow = "1.0"
 bottomify = "1.2.0"
 dotenvy = "0.15.7"
-env_logger = "0.11.5"
-log = "0.4.22"
+env_logger = "0.11.6"
+log = "0.4.25"
 poise = "0.6.1"
 rand = "0.8.5"
-redis = { version = "0.27", features = ["tokio-comp", "tokio-rustls-comp"] }
-redis-macros = "0.4"
-reqwest = { version = "0.12.9", default-features = false, features = [
+redis = { version = "0.28", features = ["tokio-comp", "tokio-rustls-comp"] }
+redis-macros = "0.5"
+reqwest = { version = "0.12.12", default-features = false, features = [
 	"rustls-tls",
 	"json",
 ] }
-serde = "1.0.215"
-serde_json = "1.0.133"
-tokio = { version = "1.41.1", features = [
+serde = "1.0.217"
+serde_json = "1.0.138"
+tokio = { version = "1.43.0", features = [
 	"macros",
 	"rt-multi-thread",
 	"signal",
 ] }
-url = { version = "2.5.2", features = ["serde"] }
+url = { version = "2.5.4", features = ["serde"] }
 uwurandom-rs = "1.1.0"
 
 [lints.rust]

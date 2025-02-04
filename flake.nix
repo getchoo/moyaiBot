@@ -100,7 +100,8 @@
             ];
 
             inputsFrom = [ self.packages.${system}.moyai-discord-bot ];
-            RUST_SRC_PATH = "${pkgs.rustPlatform.rustLibSrc}";
+
+            RUST_SRC_PATH = toString pkgs.rustPlatform.rustLibSrc;
           };
 
           ci = pkgs.mkShell {

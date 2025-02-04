@@ -39,10 +39,6 @@ jobs:
         if: ${{ matrix.use-nix }}
         uses: "cachix/install-nix-action@v30"
 
-      - name: "Setup Nix cache"
-        if: ${{ matrix.use-nix }}
-        uses: "DeterminateSystems/magic-nix-cache-action@v8"
-
       - name: "Install Rust"
         if: ${{ !matrix.use-nix }}
         uses: "actions-rust-lang/setup-rust-toolchain@v1"
