@@ -12,7 +12,7 @@ pub async fn version(ctx: Context<'_>) -> Result<()> {
 	let revision_url = format!(
 		"[{}]({}/tree/{})",
 		sha,
-		option_env!("CARGO_PKG_REPOSITORY").unwrap_or("https://github.com/getchoo/chill"),
+		option_env!("CARGO_PKG_REPOSITORY").unwrap_or("https://github.com/getchoo/moyai-bot"),
 		sha,
 	);
 

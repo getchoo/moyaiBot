@@ -37,9 +37,6 @@ jobs:
       - name: "Install Nix"
         uses: "cachix/install-nix-action@v30"
 
-      - name: "Setup Nix cache"
-        uses: "DeterminateSystems/magic-nix-cache-action@v8"
-
       - name: "Run Clippy"
         id: "clippy-run"
         run: |

@@ -38,7 +38,7 @@
         {
           clippy-sarif = pkgs.stdenv.mkDerivation {
             name = "check-clippy-sarif";
-            inherit (self.packages.${system}.chill-discord-bot) src cargoDeps;
+            inherit (self.packages.${system}.moyai-discord-bot) src cargoDeps;
 
             nativeBuildInputs = [
               pkgs.cargo
@@ -99,8 +99,9 @@
               pkgs.redis
             ];
 
-            inputsFrom = [ self.packages.${system}.chill-discord-bot ];
-            RUST_SRC_PATH = "${pkgs.rustPlatform.rustLibSrc}";
+            inputsFrom = [ self.packages.${system}.moyai-discord-bot ];
+
+            RUST_SRC_PATH = toString pkgs.rustPlatform.rustLibSrc;
           };
 
           ci = pkgs.mkShell {
@@ -111,7 +112,7 @@
               self.formatter.${system}
             ];
 
-            inputsFrom = [ self.packages.${system}.chill-discord-bot ];
+            inputsFrom = [ self.packages.${system}.moyai-discord-bot ];
           };
         }
       );
@@ -138,9 +139,9 @@
           static-x86_64 = staticWith { arch = "x86_64"; };
           static-aarch64 = staticWith { arch = "aarch64"; };
 
-          chill-discord-bot = pkgs.callPackage ./nix/package.nix { inherit self; };
+          moyai-discord-bot = pkgs.callPackage ./nix/package.nix { inherit self; };
 
-          default = self.packages.${system}.chill-discord-bot;
+          default = self.packages.${system}.moyai-discord-bot;
         }
       );
     };

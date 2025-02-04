@@ -19,17 +19,17 @@ let
     ;
   inherit (pkgs.stdenv.hostPlatform) system;
 
-  cfg = config.services.chill-discord-bot;
+  cfg = config.services.moyai-discord-bot;
 
-  defaultUser = "chill-discord-bot";
-  flakePackages = self.packages.${system} or (throw "getchoo/chill: ${system} is not supported");
+  defaultUser = "moyai-discord-bot";
+  flakePackages = self.packages.${system} or (throw "getchoo/moyai-bot: ${system} is not supported");
 in
 
 {
-  options.services.chill-discord-bot = {
-    enable = mkEnableOption "chill";
+  options.services.moyai-discord-bot = {
+    enable = mkEnableOption "moyai-discord-bot";
 
-    package = mkPackageOption flakePackages "chill-discord-bot" { };
+    package = mkPackageOption flakePackages "moyai-discord-bot" { };
 
     user = mkOption {
       description = ''
@@ -77,30 +77,30 @@ in
       type = types.nullOr types.path;
       default = null;
       example = literalExpression ''
-        "/run/agenix.d/1/chillDiscordBot"
+        "/run/agenix.d/1/moyaiDiscordBot"
       '';
     };
   };
 
   imports = [
-    (lib.mkRenamedOptionModule [ "services" "teawiebot" ] [ "services" "chill-discord-bot" ])
+    (lib.mkRenamedOptionModule [ "services" "teawiebot" ] [ "services" "moyai-discord-bot" ])
   ];
 
   config = mkIf cfg.enable {
     services.redis.servers = mkIf (cfg.redisUrl == "local") {
-      chill-discord-bot = {
+      moyai-discord-bot = {
         enable = true;
         inherit (cfg) user;
         port = 0; # disable tcp listener
       };
     };
 
-    systemd.services.chill-discord-bot = {
+    systemd.services.moyai-discord-bot = {
       enable = true;
       wantedBy = [ "multi-user.target" ];
       after = [
         "network.target"
-      ] ++ optionals (cfg.redisUrl == "local") [ "redis-chill-discord-bot.service" ];
+      ] ++ optionals (cfg.redisUrl == "local") [ "redis-moyai-discord-bot.service" ];
 
       script = ''
         ${getExe cfg.package}
@@ -109,7 +109,7 @@ in
       environment = {
         REDIS_URL =
           if cfg.redisUrl == "local" then
-            "unix:${config.services.redis.servers.chill-discord-bot.unixSocket}"
+            "unix:${config.services.redis.servers.moyai-discord-bot.unixSocket}"
           else
             cfg.redisUrl;
       };
